@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101c1b">
+    <meta name="description" content="Explore Earth's curve, the familiar conditions that support life, and the long story of life on our planet.">
+    <title>One Earth, All of Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="earth.css">
+    <script src="earth.js" defer></script>
+</head>
+<body>
+    <header class="hero" id="top">
+        <img class="hero-image" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2400&q=85" alt="The curved blue Earth seen from space, with sunlight catching the atmosphere">
+        <div class="hero-shade" aria-hidden="true"></div>
+        <nav class="site-nav" aria-label="Main navigation">
+            <a class="wordmark" href="#top"><span class="brand-mark" aria-hidden="true">◎</span> ONE EARTH, ALL OF US</a>
+            <div class="nav-links">
+                <a href="#curve">The curve</a>
+                <a href="#life">Our connection</a>
+                <a href="#timeline">Deep time</a>
+            </div>
+        </nav>
+        <div class="hero-copy">
+            <p class="eyebrow"><span></span> A story written in a world</p>
+            <h1>We are all<br>living on the <em>same curve.</em></h1>
+            <p class="hero-intro">A planet is not just where life happens. It is the ground under our feet, the air between us, and the long, astonishing story that made us.</p>
+            <a class="button button-light" href="#curve">Meet your planet <span aria-hidden="true">↓</span></a>
+        </div>
+        <p class="image-credit">Earth, from a little farther away <span>·</span> Image via Unsplash</p>
+        <a class="scroll-cue" href="#curve" aria-label="Scroll to explore Earth's curvature">↓</a>
+    </header>
+
+    <main>
+        <section class="planet-facts" aria-label="Earth at a glance">
+            <p class="facts-heading">A few familiar numbers</p>
+            <p><strong>4.54 billion</strong><span>years in the making</span></p>
+            <p><strong>71%</strong><span>of the surface is ocean</span></p>
+            <p><strong>24 hours</strong><span>to turn once around</span></p>
+            <p><strong>8 min 20 sec</strong><span>for sunlight to arrive</span></p>
+        </section>
+
+        <section class="curve-section" id="curve">
+            <div class="section-intro">
+                <p class="eyebrow"><span></span> The shape of home</p>
+                <h2>Flat beneath us.<br><em>Curved around us.</em></h2>
+                <p>Earth is so large that a small piece of its surface feels level. But step back far enough and the curve becomes part of the view. Choose a distance to see how much the surface falls below a perfectly straight tangent line.</p>
+                <p class="science-note">Idealized geometry from a spherical Earth; terrain and atmospheric refraction are not included.</p>
+            </div>
+
+            <div class="curve-explorer">
+                <div class="explorer-head">
+                    <p class="explorer-label">The horizon, measured</p>
+                    <span class="radius-note">Earth radius · 6,371 km</span>
+                </div>
+                <div class="diagram-wrap">
+                    <svg class="curve-diagram" viewBox="0 0 720 300" role="img" aria-labelledby="diagram-title diagram-description">
+                        <title id="diagram-title">A straight tangent above Earth's curved surface</title>
+                        <desc id="diagram-description">An illustrative diagram showing the distance along Earth's surface, its curve below a straight tangent, and the central angle.</desc>
+                        <line class="tangent-line" id="tangent-line" x1="110" y1="124" x2="235" y2="124"></line>
+                        <path class="surface-fill" d="M110 124 Q360 124 610 236 L610 270 L110 270 Z"></path>
+                        <path class="surface-line" id="surface-arc" d="M110 124 Q360 124 610 236"></path>
+                        <line class="drop-line" id="drop-line" x1="610" y1="124" x2="610" y2="236"></line>
+                        <circle class="observer-dot" cx="110" cy="124" r="7"></circle>
+                        <circle class="target-dot" id="target-dot" cx="610" cy="236" r="6"></circle>
+                        <path class="angle-arc" d="M151 124 A41 41 0 0 1 149 136"></path>
+                        <text class="diagram-label" id="distance-label" x="360" y="177">25 km along the surface</text>
+                        <text class="diagram-label drop-label" id="drop-label" x="624" y="183">49.0 m</text>
+                        <text class="diagram-label angle-label" id="diagram-angle" x="157" y="151">0.225°</text>
+                        <text class="diagram-small" x="110" y="285">observer</text>
+                        <text class="diagram-small" id="far-label" x="610" y="285">farther point</text>
+                    </svg>
+                    <p class="diagram-caveat">Dashed line: straight tangent · illustration not to scale</p>
+                </div>
+                <div class="distance-control">
+                    <div class="control-labels">
+                        <label for="distance-slider">Distance from the starting point</label>
+                        <output id="distance-output" for="distance-slider">25 km</output>
+                    </div>
+                    <input id="distance-slider" type="range" min="1" max="100" value="25" step="1">
+                    <div class="range-ends"><span>1 km</span><span>100 km</span></div>
+                </div>
+                <div class="measurements" aria-live="polite">
+                    <p><span>Surface drop</span><strong id="drop-output">49.0 m</strong></p>
+                    <p><span>Angle around Earth</span><strong id="angle-output">0.225°</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="connection" id="life">
+            <div class="connection-top">
+                <p class="eyebrow"><span></span> Not separate from nature</p>
+                <h2>Earth is not<br>the backdrop.<br><em>It is the relationship.</em></h2>
+            </div>
+            <div class="connection-copy">
+                <p class="connection-lead">A breath of air, a glass of water, a meal shared at the table: each is a small meeting with the living planet.</p>
+                <p>Water moves between ocean, cloud, soil, leaf, and body. Carbon passes through air and living things. Sunlight becomes warmth, then food, then energy for a day of work or rest. We experience Earth not as a distant globe, but as the conditions that let ordinary life happen.</p>
+                <p>And life changes those conditions in return. Forests shape local water cycles. Tiny ocean organisms help move carbon. Human choices change the atmosphere we all share. The connection goes both ways.</p>
+                <a class="source-link" href="https://science.nasa.gov/earth/earth-observations/" target="_blank" rel="noopener noreferrer">See how NASA observes a changing Earth <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="orbit-mark" aria-hidden="true"><span>ONE<br>WORLD</span><i></i></div>
+        </section>
+
+        <section class="timeline-section" id="timeline">
+            <div class="timeline-heading">
+                <p class="eyebrow"><span></span> A very long becoming</p>
+                <h2>Life took its <em>time.</em></h2>
+                <p>Every chapter made the next one possible. Here is a tiny window into the story so far.</p>
+            </div>
+            <ol class="timeline">
+                <li>
+                    <span class="timeline-date">4.54 billion years ago</span>
+                    <h3>A planet gathers</h3>
+                    <p>Dust and rock orbiting the young Sun collide and collect into Earth.</p>
+                </li>
+                <li>
+                    <span class="timeline-date">At least 3.5 billion years ago</span>
+                    <h3>Life leaves traces</h3>
+                    <p>Ancient rocks preserve evidence of early life, likely tiny and single-celled.</p>
+                </li>
+                <li>
+                    <span class="timeline-date">About 2.4 billion years ago</span>
+                    <h3>The air begins to change</h3>
+                    <p>Oxygen from photosynthetic microbes builds up in the atmosphere over a long stretch of time.</p>
+                </li>
+                <li>
+                    <span class="timeline-date">About 541 million years ago</span>
+                    <h3>Life diversifies</h3>
+                    <p>Many kinds of complex animal life appear in the fossil record during the Cambrian period.</p>
+                </li>
+                <li>
+                    <span class="timeline-date">About 300,000 years ago</span>
+                    <h3>Here we are</h3>
+                    <p>Homo sapiens emerge, carrying a very recent chapter in an ancient story.</p>
+                </li>
+            </ol>
+            <p class="timeline-footnote">Dates are approximate. Earth science keeps refining the details as new evidence comes to light.</p>
+        </section>
+
+        <section class="closing">
+            <p class="eyebrow eyebrow-light"><span></span> Still becoming</p>
+            <h2>Somehow, on this<br>small curve, <em>we grew.</em></h2>
+            <p>Look up at the horizon. Look down at the soil. Both belong to the same extraordinary, ongoing story.</p>
+            <a class="button button-light" href="#top">Take another look <span aria-hidden="true">↑</span></a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <a class="wordmark" href="#top"><span class="brand-mark" aria-hidden="true">◎</span> ONE EARTH, ALL OF US</a>
+        <p>Sources: <a href="https://science.nasa.gov/earth/facts/" target="_blank" rel="noopener noreferrer">NASA Earth</a> · <a href="https://www.si.edu/spotlight/buginfo/earth" target="_blank" rel="noopener noreferrer">Smithsonian</a> · <a href="https://www.usgs.gov/faqs/how-old-earth" target="_blank" rel="noopener noreferrer">USGS</a></p>
+        <a class="back-top" href="#top">Back to top ↑</a>
+    </footer>
+</body>
+</html>

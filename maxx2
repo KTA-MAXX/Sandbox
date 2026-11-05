@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#071b26">
+	<title>A World Becoming — Earth, Life & Time</title>
+	<style>
+		:root {
+			color-scheme: dark;
+			--ink: #edf5ed;
+			--muted: #a9c1bd;
+			--sea: #071b26;
+			--green: #b7d7a4;
+			--gold: #f0c77b;
+		}
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body {
+			margin: 0;
+			color: var(--ink);
+			background: var(--sea);
+			font-family: Georgia, "Times New Roman", serif;
+			line-height: 1.65;
+		}
+		a { color: inherit; }
+		.hero {
+			min-height: 100svh;
+			position: relative;
+			display: grid;
+			align-items: end;
+			overflow: hidden;
+			padding: clamp(2rem, 7vw, 7rem);
+			background:
+				radial-gradient(ellipse at 75% 48%, transparent 0 25%, rgba(3, 12, 19, .14) 25.3% 25.8%, transparent 26%),
+				radial-gradient(ellipse at 75% 52%, #31969a 0 8%, #176275 18%, #103a52 39%, #081c2c 60%, #06111b 75%);
+		}
+		.hero::before {
+			content: "";
+			position: absolute;
+			width: min(80vw, 780px);
+			aspect-ratio: 1;
+			border-radius: 50%;
+			top: 8%; right: -17%;
+			border: 1px solid rgba(201, 233, 204, .25);
+			box-shadow: 0 0 80px rgba(90, 197, 181, .12), inset 0 0 80px rgba(90, 197, 181, .08);
+			transform: rotate(-18deg) scaleY(.88);
+		}
+		.hero::after {
+			content: "";
+			position: absolute;
+			width: 120%; height: 1px;
+			right: -20%; top: 54%;
+			background: linear-gradient(90deg, transparent, rgba(240, 199, 123, .65), transparent);
+			transform: rotate(-18deg);
+			box-shadow: 0 0 18px rgba(240, 199, 123, .45);
+		}
+		.hero-copy { position: relative; z-index: 1; max-width: 720px; }
+		.eyebrow, .section-label {
+			color: var(--gold);
+			font: 600 .72rem/1.4 system-ui, sans-serif;
+			letter-spacing: .2em;
+			text-transform: uppercase;
+		}
+		h1 { font-size: clamp(3.6rem, 10vw, 8rem); line-height: .92; font-weight: 400; letter-spacing: -.06em; margin: 1.3rem 0; }
+		.hero p { color: #d3e2d9; max-width: 490px; font-size: clamp(1.05rem, 2vw, 1.3rem); }
+		.scroll { display: inline-flex; gap: .8rem; align-items: center; margin-top: 2rem; color: var(--green); text-decoration: none; font: 600 .75rem system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+		.scroll::before { content: "↓"; font-size: 1.3rem; }
+		main { overflow: hidden; }
+		section { padding: clamp(4.5rem, 10vw, 9rem) max(7vw, calc((100vw - 1100px) / 2)); }
+		.intro { background: #e8eee1; color: #18332f; }
+		.intro .section-label { color: #557a62; }
+		.intro h2, .closing h2 { max-width: 850px; margin: 1.2rem 0; font-size: clamp(2.4rem, 6vw, 5.2rem); line-height: 1.06; font-weight: 400; letter-spacing: -.04em; }
+		.intro p { max-width: 650px; color: #49615a; font-size: 1.1rem; }
+		.curve { background: #0c2833; position: relative; }
+		.curve-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 8vw, 7rem); align-items: center; }
+		.curve h2, .timeline h2 { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.05; font-weight: 400; letter-spacing: -.04em; margin: 1rem 0; }
+		.curve p, .timeline p { color: var(--muted); }
+		.orbit-art { min-height: 340px; position: relative; display: grid; place-items: center; }
+		.orbit {
+			width: min(70vw, 350px); aspect-ratio: 1; border-radius: 50%;
+			background: radial-gradient(circle at 35% 30%, #83d2b5 0 4%, transparent 5%), radial-gradient(ellipse at 63% 62%, #538d66 0 13%, transparent 14%), radial-gradient(ellipse at 39% 57%, #317c80 0 22%, transparent 23%), radial-gradient(circle at 34% 30%, #75c4c0, #286e83 55%, #123a55 75%);
+			box-shadow: inset -35px -10px 55px #041722, 0 0 70px rgba(95, 191, 176, .13);
+			transform: rotate(-18deg) scaleY(.9);
+		}
+		.orbit::after { content: ""; position: absolute; width: 145%; height: 35%; left: -22%; top: 31%; border: 1px solid rgba(241, 199, 123, .7); border-radius: 50%; transform: rotate(-18deg); }
+		.caption { position: absolute; bottom: 1rem; right: 0; color: #87aaa8; font: .7rem system-ui, sans-serif; letter-spacing: .08em; }
+		.timeline { background: #112f31; }
+		.timeline-intro { max-width: 650px; margin-bottom: 3rem; }
+		.steps { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(183, 215, 164, .35); }
+		.step { padding: 1.5rem 1.2rem 0 0; position: relative; }
+		.step::before { content: ""; display: block; width: 9px; height: 9px; border-radius: 50%; background: var(--gold); margin-top: -1.82rem; margin-bottom: 1.5rem; box-shadow: 0 0 14px rgba(240, 199, 123, .6); }
+		.step time { color: var(--gold); font: 600 .72rem system-ui, sans-serif; letter-spacing: .11em; text-transform: uppercase; }
+		.step h3 { font-size: 1.35rem; font-weight: 400; margin: .55rem 0; }
+		.step p { font-size: .94rem; }
+		.closing { text-align: center; background: radial-gradient(ellipse at 50% 110%, #215d50, #071b26 68%); padding-block: clamp(6rem, 15vw, 12rem); }
+		.closing .section-label { display: block; }
+		.closing h2 { margin-inline: auto; }
+		.closing p { max-width: 570px; margin: 0 auto; color: var(--muted); font-size: 1.1rem; }
+		footer { padding: 1.5rem; text-align: center; color: #78918d; font: .75rem system-ui, sans-serif; background: #06151d; }
+		@media (max-width: 700px) {
+			.hero { min-height: 90svh; }
+			.hero::before { width: 100vw; top: 10%; right: -45%; }
+			.curve-grid { grid-template-columns: 1fr; }
+			.orbit-art { min-height: 290px; }
+			.steps { grid-template-columns: 1fr 1fr; row-gap: 2.5rem; }
+			.step { padding-right: 1rem; }
+		}
+		@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+	</style>
+</head>
+<body>
+	<header class="hero">
+		<div class="hero-copy">
+			<span class="eyebrow">A small world, a long becoming</span>
+			<h1>A world<br>becoming.</h1>
+			<p>From the quiet curve of a horizon to the astonishing abundance of life, Earth is a story we are all inside.</p>
+			<a class="scroll" href="#perspective">Begin the journey</a>
+		</div>
+	</header>
+
+	<main>
+		<section class="intro" id="perspective">
+			<span class="section-label">01 / Perspective</span>
+			<h2>Look out far enough, and the horizon begins to bend.</h2>
+			<p>Earth is almost a sphere, gently flattened at its poles. From the ground, its vastness can feel endless; from high above, its curve gathers everything we know into one luminous home. That change in perspective is a reminder: we belong to something both immense and shared.</p>
+		</section>
+
+		<section class="curve">
+			<div class="curve-grid">
+				<div>
+					<span class="section-label">02 / The living angle</span>
+					<h2>There is no single way to meet a world.</h2>
+					<p>Stand on a hillside, sail toward a far shore, or watch daylight trace the edge of the planet: the curve meets every viewpoint at a different angle. Life does something similar. We each see the world from where we are, yet our paths share the same ground, water, and air.</p>
+					<p>Our differences are real. So is our connection.</p>
+				</div>
+				<div class="orbit-art" role="img" aria-label="An illustrated blue-green Earth crossed by a softly glowing horizon line">
+					<div class="orbit"></div>
+					<span class="caption">ONE HOME · MANY HORIZONS</span>
+				</div>
+			</div>
+		</section>
+
+		<section class="timeline">
+			<div class="timeline-intro">
+				<span class="section-label">03 / Time in bloom</span>
+				<h2>Life keeps finding a way to begin again.</h2>
+				<p>Across billions of years, small beginnings became a branching, changing abundance. Every chapter builds on what came before—not as a straight line, but as a living, interwoven story.</p>
+			</div>
+			<div class="steps">
+				<article class="step">
+					<time>~3.5 billion years ago</time>
+					<h3>First traces</h3>
+					<p>Early life takes hold in ancient waters, beginning a story that will never stop changing.</p>
+				</article>
+				<article class="step">
+					<time>~2.4 billion years ago</time>
+					<h3>Air transforms</h3>
+					<p>Oxygen begins to build in the atmosphere, reshaping the possibilities for life.</p>
+				</article>
+				<article class="step">
+					<time>~500 million years ago</time>
+					<h3>Life diversifies</h3>
+					<p>Many forms flourish in the seas, and life’s branches spread into new expressions.</p>
+				</article>
+				<article class="step">
+					<time>Today</time>
+					<h3>Our chapter</h3>
+					<p>We are part of the story now—with the chance to care for what comes next.</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="closing">
+			<span class="section-label">04 / Still becoming</span>
+			<h2>Wonder is a way of belonging.</h2>
+			<p>Every breath joins an ancient exchange. Every life touches other lives. On this curved, remarkable Earth, we are not just looking at the story—we are helping it grow.</p>
+		</section>
+	</main>
+	<footer>Made for the one world we share.</footer>
+</body>
+</html>
